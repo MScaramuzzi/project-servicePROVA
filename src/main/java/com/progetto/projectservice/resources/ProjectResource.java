@@ -26,7 +26,7 @@ public class ProjectResource {
     public List<Progetto> getProject(){
 
         return projectService.getAllProjects();
-        /*Employee e1 =new Employee("childish","gambino","0000","Programmatore");
+        /*Employee e1 =new Employee("childish","gambino","0000","Programmatore"); /ste cose per mo non servono
         Employee e2 = new Employee("carlo","vacca","0001","Nullafacente");
         e1.setManager(true);
         Partecipanti partecipanti= new Partecipanti();
