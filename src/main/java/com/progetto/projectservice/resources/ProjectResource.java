@@ -1,18 +1,13 @@
 package com.progetto.projectservice.resources;
 
-import com.progetto.projectservice.models.Employee;
-import com.progetto.projectservice.models.Overview;
-import com.progetto.projectservice.models.Partecipanti;
-import com.progetto.projectservice.models.Progetto;
+import com.progetto.projectservice.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 
 @RestController
@@ -22,24 +17,37 @@ public class ProjectResource {
     @Autowired
     private ProjectService projectService;
 
+    @Autowired
+    public RestTemplate restTemplate;
+
     @RequestMapping("/projects")
     public List<Progetto> getProject(){
 
         return projectService.getAllProjects();
-        /*Employee e1 =new Employee("childish","gambino","0000","Programmatore"); /ste cose per mo non servono
-        Employee e2 = new Employee("carlo","vacca","0001","Nullafacente");
-        e1.setManager(true);
-        Partecipanti partecipanti= new Partecipanti();
-        partecipanti.addPartecipanti(e1);
-        partecipanti.addPartecipanti(e2);
-        Progetto progetto1 = new Progetto("OOOk","Descrixiozne",544);
-        Overview overview1 = new Overview();
-        overview1.addProgetto(progetto1,partecipanti);
-        overview1.stream();*/
+
     }
     @RequestMapping("/projects/{projectID}")
     public Progetto getProgetto(@PathVariable String projectID){
         return projectService.getProgetto(projectID);
+    }
+
+    @RequestMapping("/overview/{projectID}")
+    public String overview(@PathVariable String projectID){
+
+
+        String s = "Overview del progetto ";
+        Manager m1= new Manager("Confused","Travolta","789");
+        Partecipanti partecipanti = new Partecipanti(projectID,m1.getManagerID());
+
+        partecipanti.addPartecipanti( restTemplate.getForObject("http://localhost:8082/employees/123",Employee.class));
+        partecipanti.addPartecipanti( restTemplate.getForObject("http://localhost:8082/employees/666",Employee.class));
+        partecipanti.addPartecipanti( restTemplate.getForObject("http://localhost:8082/employees/456",Employee.class));
+
+
+         s +="\n" + projectService.getProgetto(projectID).toString() + m1.toString()+ "\n" + partecipanti.toString() ;
+
+
+        return s;
     }
 
 }
