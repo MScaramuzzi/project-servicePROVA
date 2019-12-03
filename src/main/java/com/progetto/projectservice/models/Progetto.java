@@ -49,4 +49,9 @@ public class Progetto {
     public void setBudget(float budget) {
         this.budget = budget;
     }
+
+    public String toString(){
+        String s = "\nNome Progetto: "+ nomeProgetto + " \nDescrizione: "+ descrizione + "\n Budget: "+ budget;
+        return s;
+    }
 }

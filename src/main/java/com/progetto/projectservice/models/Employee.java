@@ -9,32 +9,18 @@ public class Employee {
     private String nome;
     private String cognome;
     private String employeeID;
-    private String ruolo;
-    private boolean manager;
 
-    public String getRuolo() {
-        return ruolo;
-    }
 
-    public void setRuolo(String ruolo) {
-        this.ruolo = ruolo;
-    }
 
-    public boolean isManager() {
-        return manager;
-    }
 
-    public void setManager(boolean manager) {
-        this.manager = manager;
-    }
 
     public Employee() {}
 
-    public Employee(String nome, String cognome, String employeeID,String ruolo) {
+    public Employee(String nome, String cognome, String employeeID) {
         this.nome = nome;
         this.cognome = cognome;
         this.employeeID = employeeID;
-        this.ruolo = ruolo;
+
 
     }
 
@@ -60,6 +46,11 @@ public class Employee {
 
     public void setEmployeeID(String employeeID) {
         this.employeeID = employeeID;
+    }
+
+    public String toString(){
+        String s = "\nNome: "+ nome + " \nCognome: "+ cognome + "\n ID: "+employeeID;
+        return s;
     }
 
 

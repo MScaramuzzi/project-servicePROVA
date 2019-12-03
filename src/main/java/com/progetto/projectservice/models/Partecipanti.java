@@ -7,10 +7,14 @@ import java.util.ListIterator;
 
 public class Partecipanti {
     LinkedList<Employee> partecipanti;
+    private String projectID;
+    private String managerID;
 
 
-    public Partecipanti() {
+    public Partecipanti(String projectID,String managerID) {
         partecipanti = new LinkedList<>();
+        this.projectID = projectID;
+        this.managerID = managerID;
     }
 
     public void addPartecipanti(Employee e){
@@ -18,26 +22,15 @@ public class Partecipanti {
     }
 
 
-   /* public String toString(List<Employee> lista){
+    @Override
+    public String toString(){
         String s = "";
+       for(int i=0; i<partecipanti.size();i++){
+           s += partecipanti.get(i).toString();
 
-        ListIterator<Employee> iter = lista.listIterator();
-        while(iter.hasNext()){
-            Employee e = iter.next();
-            s += e.toString();
-
-        }
+       }
 
         return s;
     }
 
-    public String tooString(){
-        String s = "";
-        LinkedList<Employee> l = new LinkedList<>();
-        for (Iterator i = l.iterator(); i.hasNext();) {
-            s += l.toString();
-        }
-        return s;
-    }
-   */
 }

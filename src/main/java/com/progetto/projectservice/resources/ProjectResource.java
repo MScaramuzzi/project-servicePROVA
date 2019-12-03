@@ -26,6 +26,7 @@ public class ProjectResource {
         return projectService.getAllProjects();
 
     }
+
     @RequestMapping("/projects/{projectID}")
     public Progetto getProgetto(@PathVariable String projectID){
         return projectService.getProgetto(projectID);
@@ -33,7 +34,6 @@ public class ProjectResource {
 
     @RequestMapping("/overview/{projectID}")
     public String overview(@PathVariable String projectID){
-
 
         String s = "Overview del progetto ";
         Manager m1= new Manager("Confused","Travolta","789");
@@ -44,7 +44,7 @@ public class ProjectResource {
         partecipanti.addPartecipanti( restTemplate.getForObject("http://localhost:8082/employees/456",Employee.class));
 
 
-         s +="\n" + projectService.getProgetto(projectID).toString() + m1.toString()+ "\n" + partecipanti.toString() ;
+         s += "\n" + projectService.getProgetto(projectID).toString() + m1.toString()+ "\n" + partecipanti.toString() ;
 
 
         return s;
